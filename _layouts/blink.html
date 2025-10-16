@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="{{ site.lang | default: "en-US" }}" dir="ltr">
+  <head>
+    {% include metadata.html %}
+    {% seo %}
+
+    <style>
+      .blink {
+        position: absolute;
+        left: -9999px;
+        top: -9999px;
+        height: 1px;
+        width: 1px;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body>
+    {% include header.html %}
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+
+      <section>
+        <h3>{{ page.title }}</h3>
+
+        <div class="blink">{{ content }}</div>
+
+        <a href="javascript:toBack()">Go Back</a>
+      </section>
+
+      {% include footer.html %}
+    </div>
+    
+    {% include footer-metadata.html %}
+  </body>
+</html>
