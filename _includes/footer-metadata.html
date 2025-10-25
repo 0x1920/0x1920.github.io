@@ -1,0 +1,200 @@
+<script>
+  ;(function () {
+    const params = new URLSearchParams(window.location.search)
+    const lang = params.get('lang')
+    if (!lang) return
+
+    const localeMap = {
+      en: 'en-US',
+      'en-us': 'en-US',
+      'en-gb': 'en-GB',
+      tr: 'tr-TR',
+      'tr-tr': 'tr-TR',
+      fr: 'fr-FR',
+      'fr-fr': 'fr-FR',
+      de: 'de-DE',
+      es: 'es-ES',
+      it: 'it-IT',
+      ja: 'ja-JP',
+      'ja-jp': 'ja-JP',
+      zh: 'zh-CN',
+      'zh-cn': 'zh-CN',
+      'zh-tw': 'zh-TW',
+      pt: 'pt-PT',
+      'pt-br': 'pt-BR',
+      ru: 'ru-RU',
+      ko: 'ko-KR',
+      ar: 'ar-AR',
+      nl: 'nl-NL',
+      pl: 'pl-PL',
+      sv: 'sv-SE',
+      no: 'no-NO',
+      da: 'da-DK',
+      fi: 'fi-FI',
+      cs: 'cs-CZ',
+      el: 'el-GR',
+      he: 'he-IL',
+      id: 'id-ID',
+      hi: 'hi-IN',
+      th: 'th-TH',
+      uk: 'uk-UA',
+      vi: 'vi-VN',
+      ms: 'ms-MY',
+      my: 'my-MM',
+      bn: 'bn-BD',
+      ta: 'ta-IN',
+      te: 'te-IN',
+      ml: 'ml-IN',
+      kn: 'kn-IN',
+      gu: 'gu-IN',
+      pa: 'pa-IN',
+      mr: 'mr-IN',
+      or: 'or-IN',
+      si: 'si-LK',
+      ne: 'ne-NP',
+      km: 'km-KH',
+      lo: 'lo-LA',
+      am: 'am-ET',
+      hy: 'hy-AM',
+      ka: 'ka-GE',
+      uz: 'uz-UZ',
+      kk: 'kk-KZ',
+      ky: 'ky-KG',
+      mn: 'mn-MN',
+      bo: 'bo-CN',
+      ps: 'ps-AF',
+      sd: 'sd-PK',
+      af: 'af-ZA',
+      sq: 'sq-AL',
+      bs: 'bs-BA',
+      mk: 'mk-MK',
+      sr: 'sr-RS',
+      sl: 'sl-SI',
+      hr: 'hr-HR'
+    }
+
+    const htmlLang = localeMap[lang.toLowerCase()] || 'en-US'
+    document.documentElement.lang = htmlLang
+
+    const rtlLangs = ['ar', 'he']
+    document.documentElement.dir = rtlLangs.includes(lang.toLowerCase())
+      ? 'rtl'
+      : 'ltr'
+
+    const fullUrl =
+      window.location.origin + window.location.pathname + '?lang=' + lang
+
+    let canonical = document.querySelector('link[rel="canonical"]')
+    if (canonical) canonical.href = fullUrl
+    else {
+      canonical = document.createElement('link')
+      canonical.rel = 'canonical'
+      canonical.href = fullUrl
+      document.head.appendChild(canonical)
+    }
+
+    let ogUrl = document.querySelector('meta[property="og:url"]')
+    if (ogUrl) ogUrl.content = fullUrl
+    else {
+      const meta = document.createElement('meta')
+      meta.setAttribute('property', 'og:url')
+      meta.content = fullUrl
+      document.head.appendChild(meta)
+    }
+
+    const ogLocaleMap = {
+      'en-US': 'en_US',
+      'en-GB': 'en_GB',
+      'tr-TR': 'tr_TR',
+      'fr-FR': 'fr_FR',
+      'de-DE': 'de_DE',
+      'es-ES': 'es_ES',
+      'it-IT': 'it_IT',
+      'ja-JP': 'ja_JP',
+      'zh-CN': 'zh_CN',
+      'zh-TW': 'zh_TW',
+      'pt-PT': 'pt_PT',
+      'pt-BR': 'pt_BR',
+      'ru-RU': 'ru_RU',
+      'ko-KR': 'ko_KR',
+      'ar-AR': 'ar_AR',
+      'nl-NL': 'nl_NL',
+      'pl-PL': 'pl_PL',
+      'sv-SE': 'sv_SE',
+      'no-NO': 'no_NO',
+      'da-DK': 'da_DK',
+      'fi-FI': 'fi_FI',
+      'cs-CZ': 'cs_CZ',
+      'el-GR': 'el_GR',
+      'he-IL': 'he_IL',
+      'id-ID': 'id_ID',
+      'hi-IN': 'hi_IN',
+      'th-TH': 'th_TH',
+      'uk-UA': 'uk_UA',
+      'vi-VN': 'vi_VN',
+      'ms-MY': 'ms_MY',
+      'my-MM': 'my_MM',
+      'bn-BD': 'bn_BD',
+      'ta-IN': 'ta_IN',
+      'te-IN': 'te_IN',
+      'ml-IN': 'ml_IN',
+      'kn-IN': 'kn_IN',
+      'gu-IN': 'gu_IN',
+      'pa-IN': 'pa_IN',
+      'mr-IN': 'mr_IN',
+      'or-IN': 'or_IN',
+      'si-LK': 'si_LK',
+      'ne-NP': 'ne_NP',
+      'km-KH': 'km_KH',
+      'lo-LA': 'lo_LA',
+      'am-ET': 'am_ET',
+      'hy-AM': 'hy_AM',
+      'ka-GE': 'ka_GE',
+      'uz-UZ': 'uz_UZ',
+      'kk-KZ': 'kk_KZ',
+      'ky-KG': 'ky_KG',
+      'mn-MN': 'mn_MN',
+      'bo-CN': 'bo_CN',
+      'ps-AF': 'ps_AF',
+      'sd-PK': 'sd_PK',
+      'af-ZA': 'af_ZA',
+      'sq-AL': 'sq_AL',
+      'bs-BA': 'bs_BA',
+      'mk-MK': 'mk_MK',
+      'sr-RS': 'sr_RS',
+      'sl-SI': 'sl_SI',
+      'hr-HR': 'hr_HR'
+    }
+
+    let ogLocale = document.querySelector('meta[property="og:locale"]')
+    if (ogLocale) ogLocale.content = ogLocaleMap[htmlLang] || 'en_US'
+    else {
+      const meta = document.createElement('meta')
+      meta.setAttribute('property', 'og:locale')
+      meta.content = ogLocaleMap[htmlLang] || 'en_US'
+      document.head.appendChild(meta)
+    }
+
+    const links = document.querySelectorAll('a[href]')
+
+    links.forEach(link => {
+      const href = link.getAttribute('href')
+      const url = new URL(href, window.location.origin)
+
+      if (url.origin === window.location.origin && !url.hash) {
+        if (!url.searchParams.has('lang')) {
+          url.searchParams.set('lang', lang)
+          link.href = url.pathname + url.search
+        }
+      }
+    })
+  })()
+
+  function toBack() {
+    if (history.length === 1) {
+      window.location = '/';
+    } else {
+      history.back()
+    }
+  }
+</script>
