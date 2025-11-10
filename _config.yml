@@ -1,0 +1,8 @@
+title: "0x1920"
+description: "0x1920 GitHub Page"
+theme: jekyll-theme-leap-day
+google_site_verification: "oCbb7qvPL6OrDCMObapBRbEEdmpUmXflEO4_9QjOVms"
+enable_google_verification: true
+
+kramdown:
+  hard_wrap: true

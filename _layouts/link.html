@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="{{ site.lang | default: "en-US" }}" dir="ltr">
+  <head>
+    {% include metadata.html %}
+    {% seo %}
+  </head>
+  <body>
+    {% include header.html %}
+
+    <div class="wrapper">
+      <nav>
+        <ul></ul>
+      </nav>
+
+      <section>
+        <h3>{{ page.title }}</h2>
+
+        {{ content }}
+
+        <a href="/">Go Home</a>
+      </section>
+
+      {% include footer.html %}
+    </div>
+
+    {% include footer-metadata.html %}
+  </body>
+</html>
